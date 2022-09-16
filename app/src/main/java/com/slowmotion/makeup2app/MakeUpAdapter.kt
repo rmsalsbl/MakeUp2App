@@ -13,10 +13,12 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.slowmotion.makeup2app.Model.MakeUpModel
+import com.slowmotion.makeup2app.Network.Retrofit
 import kotlinx.android.synthetic.main.item_makeup.view.*
 import kotlin.coroutines.coroutineContext
 
-class MakeUpAdapter : RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
+class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
+
     //variable penampung
     private val data = ArrayList<MakeUpModel>()
     //try
@@ -51,6 +53,8 @@ class MakeUpAdapter : RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
 
     }
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakeUpViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_makeup, parent, false)
@@ -58,14 +62,18 @@ class MakeUpAdapter : RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
     }
 
     //try
-//    interface OnClickListener{
-//        fun detail(item: MakeUpModel)
-//    }
+    interface OnClickListener{
+        fun detail(item: Int)
+    }
 
 
     //sesuai api
     override fun onBindViewHolder(holder: MakeUpViewHolder, position: Int) {
         holder.bind(data[position])
+        holder.itemView.setOnClickListener {
+            clickListener.detail(position)
+        }
+//        holder.itemView.setOnClickListener { (holder.bind(data[position])) }
     }
 
     override fun getItemCount(): Int = data.size
@@ -80,7 +88,7 @@ class MakeUpAdapter : RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
     }
 
 //    interface OnItemClickCallBack {
-//        fun onItemClickedData(data: MakeUpModel)
+//        fun onItemClick(data: MakeUpModel)
 //    }
 
 }

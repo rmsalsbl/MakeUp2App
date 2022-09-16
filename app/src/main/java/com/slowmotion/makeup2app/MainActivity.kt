@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MakeUpAdapter.OnClickListener {
 
     //inilisiasi
     private lateinit var adapter: MakeUpAdapter
@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity() {
         //deklarasi
         rv_kamu.setHasFixedSize(true)
         rv_kamu.layoutManager = LinearLayoutManager(this)
-        adapter = MakeUpAdapter()
+        adapter = MakeUpAdapter(this)
         adapter.notifyDataSetChanged()
         rv_kamu.adapter = adapter
         getDataFromApi()
 
-        startActivity(
-            Intent(this@MainActivity,DetailActivity::class.java)
-        )
+//        startActivity(
+//            Intent(this@MainActivity,DetailActivity::class.java)
+//        )
 
 
 
@@ -75,6 +75,12 @@ class MainActivity : AppCompatActivity() {
 //        })
 //        rv_kamu.adapter = adapter
 
+    }
+
+    override fun detail(item: Int) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.putExtra("data", item)
+        startActivity(intent)
     }
 
 
