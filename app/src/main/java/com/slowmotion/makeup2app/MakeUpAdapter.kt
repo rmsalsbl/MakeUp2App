@@ -1,6 +1,8 @@
 package com.slowmotion.makeup2app
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,45 +14,74 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.slowmotion.makeup2app.Model.MakeUpModel
 import kotlinx.android.synthetic.main.item_makeup.view.*
+import kotlin.coroutines.coroutineContext
 
-class MakeUpAdapter (
-    val list: List<MakeUpModel?>,
-//    val itemClick: OnClickListener
-): RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
-    inner class MakeUpViewHolder (private val view: View) : RecyclerView.ViewHolder(view){
-        fun bind(item: MakeUpModel){
-            view.tv_Name.text = item.Name
+class MakeUpAdapter : RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
+    //variable penampung
+    private val data = ArrayList<MakeUpModel>()
+    //try
+//    lateinit var itemClick: OnClickListener
+//    private lateinit var onItemClickCallBack: OnItemClickCallBack
+//
+//    fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack){
+//        this.onItemClickCallBack = onItemClickCallBack
+//    }
+    //bagian adapter, wajib
+    //nyambungin ui dan code
+    inner class MakeUpViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
 
-            Glide.with(view.context)
-                .load(item.Picture)
-                .apply(RequestOptions())
-                .override(500,500)
-                .placeholder(R.drawable.ic_launcher_background)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .priority(Priority.HIGH)
-                .into(view.iv_item)
 
-//            view.setOnClickListener{
-//                itemClick.detail(item)
+        fun bind(data: MakeUpModel) {
+            //lib3
+            Glide.with(itemView.context)
+                .load(data.Picture)
+                .apply(
+                    RequestOptions()
+                        .override(100, 100)
+                )
+                .into(itemView.iv_item)
+
+            itemView.tv_Name.text = data.Name
+
+            //try
+//            itemView.setOnClickListener{
+//                itemClick.detail(data)
 //            }
         }
+
     }
 
-//    interface OnClickListener {
-//        fun detail(item: MakeUpModel)
-//    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MakeUpViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_makeup, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_makeup, parent, false)
         return MakeUpViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MakeUpViewHolder, position: Int) {
-        val view = list.get(position)
+    //try
+//    interface OnClickListener{
+//        fun detail(item: MakeUpModel)
+//    }
 
-        holder.bind(view!!)
+
+    //sesuai api
+    override fun onBindViewHolder(holder: MakeUpViewHolder, position: Int) {
+        holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int = list?.size
+    override fun getItemCount(): Int = data.size
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    //buat mainac
+    fun setData(list: ArrayList<MakeUpModel>) {
+        data.clear()
+        data.addAll(list)
+        notifyDataSetChanged()
+    }
+
+//    interface OnItemClickCallBack {
+//        fun onItemClickedData(data: MakeUpModel)
+//    }
 
 }
+

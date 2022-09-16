@@ -1,5 +1,7 @@
 package com.slowmotion.makeup2app
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,36 +13,69 @@ import com.slowmotion.makeup2app.Model.MakeUpModel
 import com.slowmotion.makeup2app.Network.Retrofit
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private val list = ArrayList<MakeUpModel>()
+    //inilisiasi
+    private lateinit var adapter: MakeUpAdapter
 
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //deklarasi
         rv_kamu.setHasFixedSize(true)
         rv_kamu.layoutManager = LinearLayoutManager(this)
-        val adapter = MakeUpAdapter(list)
+        adapter = MakeUpAdapter()
+        adapter.notifyDataSetChanged()
         rv_kamu.adapter = adapter
+        getDataFromApi()
 
-        Retrofit.instance.getMakeUpList().enqueue(object : retrofit2.Callback<ArrayList<MakeUpModel>>{
-            override fun onResponse(
-                call: Call<ArrayList<MakeUpModel>>,
-                response: Response<ArrayList<MakeUpModel>>
-            ) {
-                for (q in response.body()!!){
-                    Log.e("Berhasil", q.Name.toString() )
+        startActivity(
+            Intent(this@MainActivity,DetailActivity::class.java)
+        )
+
+
+
+}
+
+
+    private fun getDataFromApi() {
+        Retrofit.instance.getMakeUpList()
+            .enqueue(object : Callback<ArrayList<MakeUpModel>>{
+                override fun onResponse(
+                    call: Call<ArrayList<MakeUpModel>>,
+                    response: Response<ArrayList<MakeUpModel>>
+                ) {
+                    if(response.isSuccessful) {
+                        showData(response.body()!!)
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ArrayList<MakeUpModel>>, t: Throwable) {
-                Log.e("Fail", "Be fail")
-            }
+                override fun onFailure(call: Call<ArrayList<MakeUpModel>>, t: Throwable) {
+                    Log.e("Fail", "Be Fail")
+                }
 
-
-        })
+            })
     }
+
+    private fun showData(data: ArrayList<MakeUpModel>) {
+        val result = data
+        adapter.setData(result)
+//        val adapter = MakeUpAdapter(data, object : MakeUpAdapter.OnClickListener{
+//            override fun detail(item: MakeUpModel) {
+//                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+//                intent.putExtra("data" ,item)
+//                startActivity(intent)
+//            }
+//        })
+//        rv_kamu.adapter = adapter
+
+    }
+
+
 }
