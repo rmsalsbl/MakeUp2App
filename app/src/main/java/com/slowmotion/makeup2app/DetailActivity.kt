@@ -24,10 +24,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initview() {
-        item = intent?.getParcelableExtra("list")
+        item = intent?.getParcelableExtra("data")
 
         tv_detail_name.setText(item?.Name)
-        item?.Price?.let { tv_detail_price.setText(it) }
+        tv_detail_price.setText(item?.Price)
         tv_detail_desc.setText(item?.Description)
 
 
@@ -37,7 +37,6 @@ class DetailActivity : AppCompatActivity() {
                 RequestOptions()
                     .override(500,500)
                     .placeholder(R.drawable.ic_launcher_background)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .priority(Priority.HIGH))
                     .into(iv_detail)
 

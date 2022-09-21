@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 //crud
 interface APIService {
-    @GET("/Kamuuapp")
+    @GET("/kamuuapp")
     fun getMakeUpList(): Call<ArrayList<MakeUpModel>>
 }

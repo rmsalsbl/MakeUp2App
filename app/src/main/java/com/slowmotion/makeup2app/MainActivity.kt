@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity(), MakeUpAdapter.OnClickListener {
         rv_kamu.adapter = adapter
         getDataFromApi()
 
-//        startActivity(
-//            Intent(this@MainActivity,DetailActivity::class.java)
-//        )
-
-
 
 }
 
@@ -66,14 +61,7 @@ class MainActivity : AppCompatActivity(), MakeUpAdapter.OnClickListener {
     private fun showData(data: ArrayList<MakeUpModel>) {
         val result = data
         adapter.setData(result)
-//        val adapter = MakeUpAdapter(data, object : MakeUpAdapter.OnClickListener{
-//            override fun detail(item: MakeUpModel) {
-//                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-//                intent.putExtra("data" ,item)
-//                startActivity(intent)
-//            }
-//        })
-//        rv_kamu.adapter = adapter
+
 
     }
 

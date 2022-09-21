@@ -21,13 +21,6 @@ class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.
 
     //variable penampung
     private val data = ArrayList<MakeUpModel>()
-    //try
-//    lateinit var itemClick: OnClickListener
-//    private lateinit var onItemClickCallBack: OnItemClickCallBack
-//
-//    fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack){
-//        this.onItemClickCallBack = onItemClickCallBack
-//    }
     //bagian adapter, wajib
     //nyambungin ui dan code
     inner class MakeUpViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -39,11 +32,12 @@ class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.
                 .load(data.Picture)
                 .apply(
                     RequestOptions()
-                        .override(100, 100)
+                        .override(100, )
                 )
                 .into(itemView.iv_item)
 
             itemView.tv_Name.text = data.Name
+            itemView.tv_price.text = data.Price.toString()
 
             //try
 //            itemView.setOnClickListener{
@@ -73,7 +67,7 @@ class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.
         holder.itemView.setOnClickListener {
             clickListener.detail(position)
         }
-//        holder.itemView.setOnClickListener { (holder.bind(data[position])) }
+
     }
 
     override fun getItemCount(): Int = data.size
@@ -87,9 +81,7 @@ class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.
         notifyDataSetChanged()
     }
 
-//    interface OnItemClickCallBack {
-//        fun onItemClick(data: MakeUpModel)
-//    }
+
 
 }
 

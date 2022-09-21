@@ -20,7 +20,7 @@ data class MakeUpModel(
     val Picture: String?,
 
     @SerializedName("Price")
-    val Price: Int,
+    val Price: String?,
 
 
     ): Parcelable

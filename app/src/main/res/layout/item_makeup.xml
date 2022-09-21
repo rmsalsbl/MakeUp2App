@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
+    android:layout_margin="15dp"
     android:clickable="true"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/iv_item"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"/>
 
@@ -25,12 +25,24 @@
             android:id="@+id/tv_Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="10dp"
             android:text="nama"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rp 130.000"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp" />
 
     </LinearLayout>
 
