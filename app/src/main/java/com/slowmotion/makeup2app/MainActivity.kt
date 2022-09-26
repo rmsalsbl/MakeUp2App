@@ -5,10 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.RelativeLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.slowmotion.makeup2app.Model.MakeUpModel
 import com.slowmotion.makeup2app.Network.Retrofit
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,12 +27,11 @@ class MainActivity : AppCompatActivity(), MakeUpAdapter.OnClickListener {
 
         //deklarasi
         rv_kamu.setHasFixedSize(true)
-        rv_kamu.layoutManager = LinearLayoutManager(this)
+        rv_kamu.layoutManager = GridLayoutManager(applicationContext, 2)
         adapter = MakeUpAdapter(this)
         adapter.notifyDataSetChanged()
         rv_kamu.adapter = adapter
         getDataFromApi()
-
 
 }
 
@@ -59,8 +56,7 @@ class MainActivity : AppCompatActivity(), MakeUpAdapter.OnClickListener {
     }
 
     private fun showData(data: ArrayList<MakeUpModel>) {
-        val result = data
-        adapter.setData(result)
+        adapter.setData(data)
 
 
     }

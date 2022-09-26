@@ -16,7 +16,7 @@
             android:layout_width="55dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="330dp"
+            android:layout_marginStart="330dp"
             android:layout_marginTop="2dp"
             android:src="@drawable/ucing">
 
@@ -30,7 +30,7 @@
             android:layout_marginTop="47dp"
             android:text="Hello ucing"
             android:textColor="@color/black"
-            android:textSize="22dp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginTop="28dp"
             android:text="Choose your make up"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="normal" />
 
 
@@ -48,18 +48,55 @@
             android:id="@+id/rv_kamu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:paddingTop="220dp"
+            android:layout_marginTop="370dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_makeup" />
 
-
-        <ImageView
-            android:layout_width="480dp"
-            android:layout_height="185dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="420dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="120dp"
-            android:src="@drawable/makeup" />
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/imu">
+
+            <TextView
+                android:id="@+id/tv_bt"
+                android:layout_width="360dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="70dp"
+                android:lineSpacingMultiplier="1"
+                android:text="Meet our latest products to add to your beauty"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginEnd="230dp"
+                android:text="Check now"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--        <ImageView-->
+<!--            android:layout_width="480dp"-->
+<!--            android:layout_height="185dp"-->
+<!--            android:layout_marginTop="120dp"-->
+<!--            android:src="@drawable/makeup" />-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +105,7 @@
             android:layout_marginTop="327dp"
             android:text="Recomended"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
 

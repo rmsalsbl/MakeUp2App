@@ -3,6 +3,7 @@ package com.slowmotion.makeup2app
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Picture
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ import kotlin.coroutines.coroutineContext
 class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.Adapter<MakeUpAdapter.MakeUpViewHolder>(){
 
     //variable penampung
-    private val data = ArrayList<MakeUpModel>()
+    val data = ArrayList<MakeUpModel>()
     //bagian adapter, wajib
     //nyambungin ui dan code
     inner class MakeUpViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -32,17 +33,20 @@ class MakeUpAdapter (private val clickListener : OnClickListener): RecyclerView.
                 .load(data.Picture)
                 .apply(
                     RequestOptions()
-                        .override(100, )
+                        .override(500, 500)
                 )
                 .into(itemView.iv_item)
+//            Glide.with(itemView.context)
+//                .load(data.Picture)
+//                .apply(RequestOptions())
+//                .override(30,30)
+//                .priority(Priority.HIGH)
+//                .into(itemView.iv_item)
+
 
             itemView.tv_Name.text = data.Name
             itemView.tv_price.text = data.Price.toString()
 
-            //try
-//            itemView.setOnClickListener{
-//                itemClick.detail(data)
-//            }
         }
 
     }
