@@ -8,19 +8,19 @@ import kotlinx.android.parcel.Parcelize
 data class MakeUpModel(
 
     @SerializedName("id")
-    val id: Int,
+    val id: Int? = null,
 
     @SerializedName("Name")
-    val Name: String?,
+    val Name: String? = null,
 
     @SerializedName("Description")
-    val Description: String?,
+    val Description: String? = null,
 
     @SerializedName("Picture")
-    val Picture: String?,
+    val Picture: String? = null,
 
     @SerializedName("Price")
-    val Price: String?,
+    val Price: String? = null,
 
 
     ): Parcelable

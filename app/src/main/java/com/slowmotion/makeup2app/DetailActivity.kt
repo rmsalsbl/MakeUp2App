@@ -22,28 +22,29 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         initView()
-//        tv_detail_name.setText(item?.Name)
+
     }
+
 
     private fun initView() {
         item = intent?.getParcelableExtra("data")
 
         tv_detail_name.text = item?.Name
-//        tv_detail_price.setText(item?.Price)
-//        tv_detail_desc.setText(item?.Description)
+        tv_detail_price.text = item?.Price
+        tv_detail_desc.text = item?.Description
 
 
-//        Glide.with(this)
-//            .load(item?.Picture)
-//            .apply(
-//                RequestOptions()
-//                    .override(500,500)
-//                    .placeholder(R.drawable.ic_launcher_background)
-//                    .priority(Priority.HIGH))
-//                    .into(iv_detail)
+        Glide.with(this)
+            .load(item?.Picture)
+            .apply(
+                RequestOptions()
+                    .override(500,500)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .priority(Priority.HIGH))
+                    .into(iv_detail)
 
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            tv_detail_desc.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
-//        }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            tv_detail_desc.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
+        }
     }
 }

@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), MakeUpAdapter.OnClickListener {
 
     private fun showData(data: ArrayList<MakeUpModel>) {
         adapter.setData(data)
-
+//        rv_kamu.adapter = adapter
 
     }
 
